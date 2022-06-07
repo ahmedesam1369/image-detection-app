@@ -14,11 +14,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
-            body: Column(
-              children: [
-                Center(child: Text('Home Screen')),
-              ],
-            ),
+            body: Center(child: Text('Home Screen')),
             floatingActionButton: FloatingActionButton(
                 child: Icon(IconBroken.Image),
                 onPressed: () {
