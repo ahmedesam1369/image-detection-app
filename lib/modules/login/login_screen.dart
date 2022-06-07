@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      'Log in now to track the devices',
+                      'Log in now to explore the world',
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Colors.grey,
                             fontSize: 15,
