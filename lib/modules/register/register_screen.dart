@@ -29,8 +29,9 @@ class RegisterScreen extends StatelessWidget {
           }
           if (state is RegisterSuccessState) {
             showToast(
-              msg: 'Account Created Successfully',
-              state: toastStates.ERROR,
+              msg: 'Account Created Successfully \n You Can Login now',
+              state: toastStates.SUCCESS,
+              
             );
             CachHelper.saveData(
               key: 'uId',
@@ -60,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                         ),
                         Text(
-                          'Register now ',
+                          'Register now to diagnose your condition ',
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     color: Colors.grey,

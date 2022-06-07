@@ -12,10 +12,18 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<LayoutCubit, LayoutStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = LayoutCubit.get(context);
           return Scaffold(
-            body: Center(child: Text('Home Screen')),
+            body: Column(
+              children: [
+                Center(child: Text('Home Screen')),
+              ],
+            ),
             floatingActionButton: FloatingActionButton(
-                child: Icon(IconBroken.Image), onPressed: () {}),
+                child: Icon(IconBroken.Image),
+                onPressed: () {
+                  LayoutCubit.get(context).pick_image();
+                }),
           );
         });
   }
