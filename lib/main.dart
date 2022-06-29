@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AppCubit(),
         ),
-        BlocProvider(create: (context) => LayoutCubit()),
+        BlocProvider(create: (context) => LayoutCubit()..getAllPatients()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},

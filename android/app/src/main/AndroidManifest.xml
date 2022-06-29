@@ -2,6 +2,8 @@
     package="com.example.elsawy">
    <application
         android:label="elsawy"
+        android:usesCleartextTraffic="true"
+
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

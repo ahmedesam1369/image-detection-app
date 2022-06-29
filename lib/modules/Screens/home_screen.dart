@@ -9,12 +9,47 @@ import '../../shared/network/local/cache_helper.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var cubit = LayoutCubit.get(context);
+
     return BlocConsumer<LayoutCubit, LayoutStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
-            body: Center(child: Text('Home Screen')),
+            body: SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      cubit.loading
+                          ? Container(
+                              height: 300,
+                              width: 300,
+                            )
+                          : Container(
+                              margin: EdgeInsets.all(20),
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(),
+                                  cubit.isImageSelected == false
+                                      ? Container()
+                                      : Image.file(cubit.selectedImage),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  // cubit.imagee == null ? Container() : _outputs != null ?
+                                  // Text(_outputs[0]["label"],style: TextStyle(color: Colors.black,fontSize: 20),
+                                  // ) : Container(child: Text(""))
+                                ],
+                              ),
+                            ),
+                    ]),
+              ),
+            ),
             floatingActionButton: FloatingActionButton(
                 child: Icon(IconBroken.Image),
                 onPressed: () {

@@ -37,7 +37,7 @@ class HomeLayout extends StatelessWidget {
                 icon: Icon(
                   IconBroken.Info_Circle,
                 ),
-                label: 'Add User',
+                label: 'Add Patient',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
