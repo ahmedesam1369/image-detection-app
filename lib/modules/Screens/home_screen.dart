@@ -17,42 +17,74 @@ class HomeScreen extends StatelessWidget {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
             body: SingleChildScrollView(
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      cubit.loading
-                          ? Container(
-                              height: 300,
-                              width: 300,
-                            )
-                          : Container(
-                              margin: EdgeInsets.all(20),
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Container(),
-                                  cubit.isImageSelected == false
-                                      ? Container()
-                                      : Image.file(cubit.selectedImage),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  // cubit.imagee == null ? Container() : _outputs != null ?
-                                  // Text(_outputs[0]["label"],style: TextStyle(color: Colors.black,fontSize: 20),
-                                  // ) : Container(child: Text(""))
-                                ],
+              child: SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        cubit.loading
+                            ? Container(
+                                height: 300,
+                                width: 300,
+                              )
+                            : Container(
+                                margin: EdgeInsets.all(20),
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(),
+                                    cubit.isImageSelected == false
+                                        ? Container()
+                                        : Image.file(cubit.selectedImage),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    cubit.printOutput == 'None'
+                                        ? Row(
+                                            children: [],
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                    child: Text(
+                                                  'Diagnosis:',
+                                                  style: TextStyle(
+                                                      fontSize: 20.0,
+                                                      color: Colors.blue,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )),
+                                                Expanded(
+                                                    child: Text(
+                                                        cubit.printOutput,
+                                                        style: TextStyle(
+                                                            fontSize: 20.0,
+                                                            color: Colors.amber,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                              ],
+                                            ),
+                                          ),
+                                    // cubit.imagee == null ? Container() : _outputs != null ?
+                                    // Text(_outputs[0]["label"],style: TextStyle(color: Colors.black,fontSize: 20),
+                                    // ) : Container(child: Text(""))
+                                  ],
+                                ),
                               ),
-                            ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
             floatingActionButton: FloatingActionButton(
                 child: Icon(IconBroken.Image),
                 onPressed: () {
+                  print(cubit.printOutput);
                   LayoutCubit.get(context).pick_image();
                 }),
           );

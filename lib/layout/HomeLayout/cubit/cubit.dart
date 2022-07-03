@@ -10,6 +10,7 @@ import '../../../modules/Screens/home_screen.dart';
 import '../../../modules/Screens/info_screen.dart';
 import '../../../modules/Screens/setting_screen.dart';
 import 'dart:io';
+import 'package:tflite/tflite.dart';
 
 class LayoutCubit extends Cubit<LayoutStates> {
   LayoutCubit() : super(InitialState());
@@ -36,6 +37,20 @@ class LayoutCubit extends Cubit<LayoutStates> {
   final ImagePicker _picker = ImagePicker();
   late File selectedImage;
   bool isImageSelected = false;
+  //
+  List<dynamic>? model_ouput;
+  bool model_loading = false;
+  String printOutput = 'None';
+  loadModel() async {
+    await Tflite.loadModel(
+      model: 'assets/images/model_unquant.tflite',
+      labels: 'assets/images/labels.txt',
+    );
+  }
+
+  void dispose() {
+    Tflite.close();
+  }
 
   pick_image() async {
     emit(PickImageLoadingState());
@@ -44,7 +59,51 @@ class LayoutCubit extends Cubit<LayoutStates> {
     if (image == null) return null;
     isImageSelected = true;
     selectedImage = File(image.path);
+    model_loading = true;
     emit(PickImageSuccessState());
+    //
+    loadModel().then((value) {
+      emit(ModelLoadingState());
+      model_loading = false;
+      try {
+        classifyImage(selectedImage);
+        emit(ModelSuccessState());
+      } catch (E) {
+        print('eRROR: ${E}');
+        emit(ModelErrorState());
+      }
+    }).catchError((error) {
+      print('Model Faild to load');
+      print('Error: ${error}');
+    });
+  }
+
+  classifyImage(File image) async {
+    emit(MOdelStartClassification());
+    var output = await Tflite.runModelOnImage(
+      path: image.path,
+      numResults: 4,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    model_loading = false;
+    // model_ouput = output;
+    // print(model_ouput![0]['label']);
+    // print(model_ouput![0]['index'].runtimeType);
+    // print(model_ouput![0]['confidence']);
+    if (output![0]['index'] == 0) {
+      printOutput = 'No Tumor';
+    } else if (output[0]['index'] == 1) {
+      printOutput = 'Glioma Tumor';
+    } else if (output[0]['index'] == 2) {
+      printOutput = 'Pituitary Tumor';
+    } else if (output[0]['index'] == 3) {
+      printOutput = 'Meningioma Tumor';
+    } else {
+      printOutput = 'None';
+    }
+    emit(MOdelEndClassification());
   }
 
 //

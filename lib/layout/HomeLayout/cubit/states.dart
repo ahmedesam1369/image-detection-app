@@ -8,6 +8,16 @@ class PickImageLoadingState extends LayoutStates {}
 
 class PickImageSuccessState extends LayoutStates {}
 
+class ModelLoadingState extends LayoutStates {}
+
+class ModelSuccessState extends LayoutStates {}
+
+class ModelErrorState extends LayoutStates {}
+
+class MOdelStartClassification extends LayoutStates {}
+
+class MOdelEndClassification extends LayoutStates {}
+
 class Chanegdropdowngender extends LayoutStates {}
 
 class Chanegdropdownstatus extends LayoutStates {}
