@@ -8,6 +8,7 @@ import 'layout/HomeLayout/cubit/cubit.dart';
 import 'layout/HomeLayout/home_layout.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'modules/login/login_screen.dart';
+import 'modules/onBoarding/onboarding_screen.dart';
 import 'modules/register/register_screen.dart';
 import 'shared/component/constants.dart';
 import 'shared/cubit/cubit.dart';
@@ -28,7 +29,7 @@ void main() async {
   if (uId != null) {
     widget = HomeLayout();
   } else {
-    widget = LoginScreen();
+    widget = OnBoardingScreen();
   }
 
   runApp(MyApp(widget));

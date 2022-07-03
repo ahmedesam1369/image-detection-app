@@ -59,12 +59,12 @@ class LayoutCubit extends Cubit<LayoutStates> {
     emit(Chanegdropdowngender());
   }
 
-  String dropdownvaluestatus = 'Type_One';
+  String dropdownvaluestatus = 'No Tumor';
   var itemsstatus = [
-    'Type_One',
-    'Type_Two',
-    'Type_Three',
-    'Type_Four',
+    'No Tumor',
+    'Glioma Tumor',
+    'Pituitary Tumor',
+    'Meningioma Tumor',
   ];
   void chanegdropdownstatus(newValue) {
     dropdownvaluestatus = newValue!;

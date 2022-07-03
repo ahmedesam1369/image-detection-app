@@ -212,7 +212,7 @@ class AddPatient extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 5.0,
-                              right: 10.0,
+                              right: 5.0,
                             ),
                             child: Icon(IconBroken.Activity),
                           ),

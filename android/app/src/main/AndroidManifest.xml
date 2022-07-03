@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.elsawy">
    <application
-        android:label="elsawy"
+        android:label="Tumor 🧠 Classification "
         android:usesCleartextTraffic="true"
 
         android:name="${applicationName}"
