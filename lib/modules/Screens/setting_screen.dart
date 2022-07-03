@@ -1,4 +1,5 @@
 import 'package:elsawy/layout/HomeLayout/cubit/states.dart';
+import 'package:elsawy/modules/onBoarding/onboarding_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ class SettingScreen extends StatelessWidget {
                       width: 200.0,
                       function: () async {
                         await FirebaseAuth.instance.signOut();
-                        NavidetAndFinish(context, LoginScreen());
+                        NavidetAndFinish(context, OnBoardingScreen());
                         CachHelper.removeData(key: 'uId');
                         LayoutCubit.get(context).currentIndex = 0;
                       }),
